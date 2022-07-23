@@ -9,4 +9,12 @@ openssl
 
 Debian based image with openssl for ssl certificate generation.
 
-Usage `docker run --rm  -e COMMON_NAME=<Common Name> -e KEY_NAME=<Cert File Names Prefix> -v /var/certs:/certs centurylink/openssl`
+Usage `docker run --rm  -e COMMON_NAME=<Common Name> -e VALID_DAYS=365 -e KEY_NAME=<Cert File Names Prefix> -v /var/certs:/certs mparvin/openssl`
+
+Example:
+```bash
+docker build -t openssl-generator .
+sslPath=/etc/ssl/hub-example
+mkdir $sslPath
+docker run --rm -e COMMON_NAME=hub.example.com -e KEY_NAME=example-hub -v $sslPath:/certs openssl-generator
+```
